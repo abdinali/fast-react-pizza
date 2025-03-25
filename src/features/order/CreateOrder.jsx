@@ -9,6 +9,7 @@ import EmptyCart from '../cart/EmptyCart';
 import store from '../../store';
 import { clearCart } from '../cart/cartSlice';
 import { formatCurrency } from '../../utils/helpers';
+import { getUser } from '../user/userSlice';
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -24,7 +25,7 @@ function CreateOrder() {
 
     const formErrors = useActionData();
 
-    const username = useSelector((state) => state.user.username);
+    const { username } = useSelector(getUser);
 
     const cart = useSelector(getCart);
 

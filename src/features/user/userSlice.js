@@ -14,12 +14,16 @@ const userSlice = createSlice({
     },
 });
 
+const getUser = (state) => {
+    return state.user;
+};
+
 const {
     reducer,
     actions: { updateName },
 } = userSlice;
 
-export { reducer as default, updateName };
+export { reducer as default, updateName, getUser };
 
 /* function getPosition() {
 	return new Promise(function (resolve, reject) {
