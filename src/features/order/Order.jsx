@@ -1,4 +1,5 @@
 import { useFetcher, useLoaderData } from 'react-router-dom';
+import { useEffect } from 'react';
 import OrderItem from './OrderItem';
 import { getOrder } from '../../services/apiRestaurant';
 import {
@@ -6,7 +7,7 @@ import {
     formatCurrency,
     formatDate,
 } from '../../utils/helpers';
-import { useEffect } from 'react';
+import UpdateOrder from './UpdateOrder';
 
 function Order() {
     const order = useLoaderData();
@@ -87,12 +88,14 @@ function Order() {
                     {formatCurrency(orderPrice + priorityPrice)}
                 </p>
             </div>
+
+            {!priority && <UpdateOrder order={order} />}
         </div>
     );
 }
 
 export async function loader({ params }) {
-    const order = await getOrder(params.orderID);
+    const order = await getOrder(params.orderId);
     return order;
 }
 
